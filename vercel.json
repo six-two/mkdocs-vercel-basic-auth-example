@@ -7,6 +7,8 @@
         "use": "@vercel/node"
     }],
     "buildCommand": "bash -x ./vercel-build.sh",
+    "installCommand": "echo nstallation is handled by the build script",
+    "outputDirectory": "public",
     "github": {
         "silent": true
     }
