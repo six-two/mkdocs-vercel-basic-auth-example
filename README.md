@@ -4,6 +4,8 @@ This is based on <https://github.com/flawyte/vercel-basic-auth>.
 
 ## Local testing
 
+Somehow the header handling does not work well locally (always get 401 even with correct request).
+
 Build:
 ```
 vercel build

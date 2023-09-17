@@ -1,26 +1,22 @@
 {
-    "buildCommand": "bash -x ./vercel-build.sh",
-    "installCommand": "echo 'Installation is handled by the build script'",
+    "buildCommand": "mkdocs build -d public",
+    "installCommand": "pip install -r requirements.txt",
     "outputDirectory": "public",
     "routes": [
-        {
-          "src": "/.*",
-          "dest": "/401.html",
-          "status": 401,
-          "headers": { "www-authenticate": "Basic realm=\"secure\"" },
-          "missing": [
-            {
-              "type": "header",
-              "key": "authorization",
-              "value": "Basic YTph"
-            }
-          ]
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/./$1"
-        }
-      ],   
+      {
+        "src": "/.*",
+        "dest": "/401.html",
+        "status": 401,
+        "headers": { "www-authenticate": "Basic realm=\"secure\"" },
+        "missing": [
+          {
+            "type": "header",
+            "key": "authorization",
+            "value": "Basic YTph"
+          }
+        ]
+      }
+    ],   
     "github": {
         "silent": true
     }
