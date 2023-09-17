@@ -4,3 +4,6 @@ public/
 
 # npm dependencies
 node_modules/
+
+# vercel-cli
+.vercel

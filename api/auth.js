@@ -11,7 +11,7 @@ const valid_credentials = [
 
 const app = protect(
   // Which sites should be protected? All. If you change this, remember that the search JSON file will leak the contents anyways, so you want to protect it or disable the search plugin
-  '/*',
+  '/another-page',
   // This code checks whether a set of credentials is valid
   (username, password) => {
     // Concatinate username and password to potentially block timing info that is leaked if you compare them sequentially
@@ -25,7 +25,7 @@ const app = protect(
   },
   // This code serves the website
   {
-    directory: __dirname + '/public',
+    directory: __dirname + '/',
     realm: 'MkDocs',
     onAuthFailed: res => {
       res.end('401 Unauthorized');
@@ -33,4 +33,4 @@ const app = protect(
   }
 );
 
-module.exports = app;
+export default app;
