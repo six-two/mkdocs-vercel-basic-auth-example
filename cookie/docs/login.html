@@ -7,14 +7,12 @@
         document.cookie = `credentials=${credentials}; Path=/; Secure; SameSite=Strict`;
     }
 
-    if (location.href && location.href != "#") {
+    if (location.href && location.href.length > 1) {
         // Autologin code: read credentials from URL hash
         set_cookie(location.hash.slice(1))
 
-        // Remove the hash to prevent a loop
-        location.hash = "";
-        // remove hash from history and reload the page
-        location.replace(location.href);
+        // remove hash from history and reload the page without the hash (to prevent a loop)
+        location.replace(location.href.replace(/#.*/, ""));
     }
 
     // Manual login

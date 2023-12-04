@@ -12,8 +12,8 @@ Basic auth:
 
 Cookie:
 
-- Manual login: TODO
-- Automatic login: TODO
+- Manual login (user `a`, password `a`): <https://mkdocs-vercel-cookie-auth-example-six-two.vercel.app/>
+- Automatic login: <https://mkdocs-vercel-cookie-auth-example-six-two.vercel.app/#a:a>
 
 
 ## HTTP basic auth
@@ -29,6 +29,7 @@ After you close the browser, the credentials will be forgotten.
 
 You need to implement a login form or small page that sets the cookie from URL parameters to allow non-technical users to log in / create a bookmark that logs you in.
 Depending on the browser's settings cookies either exist until they expire or the browser is closed.
+You can also create a button or page that deletes the cookie and thus logs the user out.
 
 Cookies are well supported although they may have regulatory problems due to them often being misused for tracking.
 I am no lawyer, but using a cookie for simply storing the authentication data and not being used for tracking should be fine.
