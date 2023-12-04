@@ -1,0 +1,22 @@
+{
+    "buildCommand": "mkdocs build -d public",
+    "installCommand": "pip install -r requirements.txt",
+    "outputDirectory": "public",
+    "routes": [
+      {
+        "src": "/.*",
+        "dest": "/login.html",
+        "status": 200,
+        "missing": [
+          {
+            "type": "header",
+            "key": "cookie",
+            "value": ".*credentials=YTph.*"
+          }
+        ]
+      }
+    ],   
+    "github": {
+        "silent": true
+    }
+}
