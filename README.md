@@ -2,18 +2,32 @@
 
 These rely on vercel's routing capabilities to route all unauthenticated requests to an error page.
 See the subfolders for different approaches.
+This has some drawbacks when it comes to security:
+
+- You can not update credentials on the fly.
+    To update credentials you need a new deployment and the old credentials will remain valid on the old deployment.
+    So you should delete all deployments if you think that your credentials were compromised.
+- There is (as far as I know) no way to prevent automated attacks.
+    So your password / access key should be relatively strong so that attackers can not guess it.
+    But since you can store the credentials in a bookmark or QR code using very strong passwords should not be a problem.
 
 ## Demos
 
-Basic auth:
+### HTTP basic auth
 
 - Manual login (user `a`, password `a`): <https://mkdocs-vercel-basic-auth-example.vercel.app/>
 - Automatic login: <https://a:a@mkdocs-vercel-basic-auth-example.vercel.app/>
+- QR code with automatic login link:
 
-Cookie:
+    ![Basic auth QR code](img/qr-basic-auth.png)
+
+### Cookie
 
 - Manual login (user `a`, password `a`): <https://mkdocs-vercel-cookie-auth-example-six-two.vercel.app/>
 - Automatic login: <https://mkdocs-vercel-cookie-auth-example-six-two.vercel.app/#a:a>
+- QR code with automatic login link:
+
+    ![Cookie auth QR code](img/qr-cookie-auth.png)
 
 
 ## HTTP basic auth
