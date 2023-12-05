@@ -19,7 +19,7 @@
             document.cookie = `credentials=${credentials}; Path=/; Secure; SameSite=Strict`;
         }
     
-        if (location.href && location.href.length > 1) {
+        if (location.hash && location.hash.length > 1) {
             // Autologin code: read credentials from URL hash
             set_cookie(location.hash.slice(1))
     
