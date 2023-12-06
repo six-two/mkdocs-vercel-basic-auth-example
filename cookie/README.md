@@ -1,5 +1,9 @@
 # Cookie authentication for MkDocs on Vercel
 
+For the pros and cons of each approach see the main README (one folder up).
+
+## Setup
+
 You very likely will want to add some code for setting the cookie to the page being served when a user is not logged in.
 To prevent leaking information like the navigation bar, your site's title, etc, you will want to create a HTML file (**not** Markdown) in your `docs/` folder.
 Mine is `docs/login.html`.
