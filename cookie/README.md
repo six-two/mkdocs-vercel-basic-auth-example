@@ -21,6 +21,8 @@ The easiest way is adding a Markdown page (so that it gets added to the navigati
 
 ## vercel.json
 
+@TODO: use hex or some other encoding that does not generate both lower and uppercase letters.
+
 To prevent any problems with characters like spaces, semicolons, etc in the access key my implementation base64 encodes it.
 You could also only allow safe characters or encoding it with another scheme (like URL encoding), but base64 is deterministic (only one way to encode a string) and many tools support it.
 

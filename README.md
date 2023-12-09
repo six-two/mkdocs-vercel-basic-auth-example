@@ -10,6 +10,11 @@ This has some drawbacks when it comes to security:
 - There is (as far as I know) no way to prevent automated attacks.
     So your password / access key should be relatively strong so that attackers can not guess it.
     But since you can store the credentials in a bookmark or QR code using very strong passwords should not be a problem.
+- The [documentation](https://vercel.com/docs/projects/project-configuration#routes) I could find on Vercel has not been that good and things often have unexpected behavior.
+    For example I just found out by testing that `routes[*].missing.value` is also case insensitive.
+    So it is much easier to guess an API key/cookie than I would have expected at first.
+    Also according to [this thread](https://github.com/orgs/vercel/discussions/1285) to perform a penetration test against your deployments you need an Enterprise plan.
+    So to not break their (in my opinion stupid) rules this code has not been properly tested and likely never will.
 
 ## Demos
 
