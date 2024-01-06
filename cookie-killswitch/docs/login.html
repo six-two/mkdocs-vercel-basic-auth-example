@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Never cache this site, it will only cause trouble -->
+    <meta http-equiv="Cache-control" content="no-cache, must-revalidate">
+    <meta http-equiv="Expires" content="-1">
+</head>
+<body>
+    
+    <script>
+        const set_cookie = (access_key) => {
+            // We escape the input with Base64 encoding, so that attackers can not inject anything
+            const credentials = btoa(access_key).replace(/=+/, "");
+            // Protect the cookie as much as we currently can: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
+            // HttpOnly can not be used, otherwise you could get this warning: Cookie “credentials” has been rejected because there is already an HTTP-Only cookie but script tried to store a new one.
+            document.cookie = `credentials=${credentials}; Path=/; Secure; SameSite=Strict`;
+        }
+    
+        if (location.hash && location.hash.length > 1) {
+            // Autologin code: read credentials from URL hash
+            set_cookie(location.hash.slice(1))
+    
+            // remove hash from history and reload the page without the hash (to prevent a loop)
+            location.replace(location.href.replace(/#.*/, ""));
+        }
+    
+        // Manual login
+        window.addEventListener("load", () => {
+            // Run after the page is loaded
+            const button_login = document.getElementById("button-login");
+            const input_key = document.getElementById("input-key");
+    
+            const login = () => {
+                set_cookie(input_key.value);
+    
+                // Reload the current page
+                location.reload();
+            };
+    
+            // When the user confirms the input try the credentials
+            input_key.addEventListener("keypress", (event) => {
+                if (event.key === "Enter") {
+                    login();
+                }
+            });
+            button_login.addEventListener("click", login);
+        });
+    </script>
+    
+    <h1>Login</h1>
+    
+    <p>Please provide your access key:</p>
+    <input id="input-key" placeholder="YOUR-ACCESS-KEY">
+    <button id="button-login">Login</button>
+    
+    <p>Hint: On this demo site the access key is <code>a:a</code></p>
+</body>
+</html>
+
