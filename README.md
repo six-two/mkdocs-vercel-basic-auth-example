@@ -1,6 +1,6 @@
 # Vercel authentication for MkDocs sites
 
-These rely on vercel's routing capabilities to route all unauthenticated requests to an error page.
+These rely on Vercel's routing capabilities to route all unauthenticated requests to an error page.
 See the subfolders for different approaches.
 This has some drawbacks when it comes to security:
 
@@ -14,7 +14,7 @@ This has some drawbacks when it comes to security:
     For example I just found out by testing that `routes[*].missing.value` is also case insensitive.
     So it is much easier to guess an API key/cookie than I would have expected at first.
     Also according to [this thread](https://github.com/orgs/vercel/discussions/1285) to perform a penetration test against your deployments you need an Enterprise plan.
-    So to not break their (in my opinion stupid) rules this code has not been properly tested and likely never will.
+    So to not break their (in my opinion stupid) rules **this code has not been properly tested and likely never will.**
 
 ## Demos
 
@@ -33,6 +33,15 @@ This has some drawbacks when it comes to security:
 - QR code with automatic login link:
 
     ![Cookie auth QR code](img/qr-cookie-auth.png)
+
+### Cookie with kill switch
+
+- The following page should always show the latest deployment:
+    <https://mkdocs-vercel-cookie-killswitch-auth-example-six-two.vercel.app/>
+- The autologin functionality and co should still work:
+    <https://mkdocs-vercel-cookie-killswitch-auth-example-six-two.vercel.app/#a:a>
+- The individual links for deployments should always show the `Kill switch triggered` page.
+    For example <https://mkdocs-vercel-basic-auth-example-a6xv.vercel.app/> (the first deployment).
 
 
 ## HTTP basic auth
@@ -58,3 +67,11 @@ If you only want people in the know to log in, you can also in theory remove the
 Then you can modify your error page to look like your server misfunctions (502 Gateway Error, 500 Internal Server Error, etc).
 This can provide some plausible deniability / make the site appear like a worthless target.
 Users knowing the cookie can just open the site, set the cookie manually via the Browser's developer tools and should be logged in.
+
+### Cookie with kill switch
+
+The same as the cookie one, but you can only access the latest deployment.
+The same approach can also be used with other schemes, such as the basic auth example.
+
+This should make accessing your site via old deployments (which may use old, weak or leaked passwords or have weaknesses in the authentication code) no longer possible.
+
